@@ -1,33 +1,49 @@
-= Demo-Presentation1
-Thomas W. Stütz
-1.0, 2020-08-22
+= TermiTune
+Arthur Dirnberger
+1.0, 2025-10-26
 ifndef::sourcedir[:sourcedir: ../src/main/java]
 ifndef::imagesdir[:imagesdir: images]
 ifndef::backend[:backend: html5]
 :icons: font
 
-== First Slide
+== Overview
 
-* aaa
-* bbb
-* ccc [red]#red text#
+A terminal-based music player written in Java, capable of managing and playing local MP3/WAV files.
+It will have a Spotify Integration for metadata and playback control.
 
-=== Second Slide
+_It combines command-line usability with modern streaming integration_
 
-[plantuml,cld,png]
-----
-@startuml
-class Person {
-brand: String
-type: String
-}
-@enduml
-----
+=== Local Player
 
-== Third Slide
+* Scan and index local music folders.
+* Display metadata (title, artist, album, duration).
+* Create, edit, and save playlists (stored in JSON).
+* Playback controls like play, pause, skip, ...
 
-image:https://images.pexels.com/photos/3966425/pexels-photo-3966425.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940[VW]
+== Spotify Integration
 
-== Fourth Slide
+* Connect to user’s Spotify account via *Spotify Web API*.
+* Display Spotify playlists and saved songs.
+* Play Spotify tracks using a *hidden local web service* running Spotify’s Web Playback SDK.
+* Unified library view combining local and Spotify tracks.
 
-IMPORTANT: Something very important
+IMPORTANT: The user will only see the terminal UI, no second web app for spotify.
+
+== Command-Line Interface
+
+* Interactive shell prompt (e.g., mpcli>).
+* Commands like play 12, playlist add, spotify connect, search "song name".
+
+== Technical Implementation
+
+* Language: Java
+* Audio Engine:
+    ** Local: JavaFX MediaPlayer or javazoom.jl (JLayer).
+    ** Spotify: Web Playback SDK hosted in local minimal web server.
+* Local Web Server: SparkJava or Jetty to bridge terminal ↔ browser player.
+* Database: SQLite or flat JSON for playlist and history persistence.
+
+== Optional Extensions
+
+* Lyrics display via external API
+* Theme customization
